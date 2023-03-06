@@ -5,6 +5,7 @@ _base_ = '../yolov7/yolov7_l_syncbn_fast_8x16b-300e_coco.py'
 custom_hooks = _base_.custom_hooks + [
     dict(
         type='TimeMonitorHook',
+        monitor_type='total',
         monitor_funcs=[
             'model.loss',               # 总前向时间
             'model.backbone',           # backbone时间
@@ -16,7 +17,8 @@ custom_hooks = _base_.custom_hooks + [
             'optimizer.update_params'       # 更新参数的总时间
         ],
         sync_cuda=True,
-        monitor_interval='total',
-        priority=45
+        # 通用参数
+        priority=45,
+        interval=50,
     )
 ]
