@@ -2,7 +2,7 @@
 import os
 import os.path as osp
 import torch
-# import inspect
+import logging
 from typing import Dict, Optional, Sequence, Union
 from mmengine.hooks import LoggerHook
 from mmengine.logging import print_log
@@ -73,12 +73,13 @@ class TimeMonitorHook(LoggerHook):
         model = runner.model
         if is_model_wrapper(model):
             model = model.module
-        dataset = runner.train_dataloader.dataset
+        dataloader = runner.train_dataloader
+        dataset = dataloader.dataset
         optimizer = runner.optim_wrapper
         for monitor_idx, monitor_str in \
             enumerate(self.monitor_funcs):
-            assert (monitor_str.startswith(('model.', 'dataset.', 'optimizer.'))), \
-                'monitor_funcs only supports the types of model, dataset or optimizer'
+            assert (monitor_str.startswith(('model.', 'dataset.', 'dataloader.', 'optimizer.'))), \
+                'monitor_funcs only supports the types of model, dataloader or optimizer'
             try:
                 monitor_func = eval(monitor_str)
                 if isinstance(monitor_func, torch.nn.Module):
@@ -86,8 +87,9 @@ class TimeMonitorHook(LoggerHook):
                     monitor_str = f'{monitor_str}.forward'
                 self.monitor_funcs[monitor_idx] = monitor_func
                 if self.sync_cuda:
-                    if monitor_str == 'dataset.__getitem__':
-                        print_log('the param sync_cuda for dataset.__getitem__ is not supported')
+                    if (monitor_str.startswith(('dataset.', 'dataloader.'))):
+                        print_log(f'the param sync_cuda for {monitor_str} is not supported',
+                                  level=logging.WARNING)
                         continue
                     # exec_obj = 'self.monitor_funcs[monitor_idx]'
                     # exec(f'{exec_obj} = _sync_after_func({exec_obj})')
@@ -118,6 +120,8 @@ class TimeMonitorHook(LoggerHook):
             return
         self.lp = LineProfiler()
         for monitor_func in self.monitor_funcs:
+            if hasattr(monitor_func, '__wrapped__'):
+                monitor_func = monitor_func.__wrapped__
             self.lp.add_function(monitor_func)
         self.lp.enable()
 
