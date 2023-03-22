@@ -305,7 +305,8 @@ custom_hooks = [
         momentum=0.0001,
         update_buffers=True,
         strict_load=False,
-        priority=49)
+        priority=49),
+    dict(type='TorchCompileHook')
 ]
 
 val_evaluator = dict(
