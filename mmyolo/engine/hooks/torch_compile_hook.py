@@ -17,5 +17,5 @@ class TorchCompileHook(Hook):
 
     def before_train(self, runner) -> None:
         model = runner.model
-        compiled_model = torch.compile(model)
+        compiled_model = torch.compile(model, self.mode)
         runner.model = compiled_model
