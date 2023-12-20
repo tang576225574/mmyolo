@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/27466624/213156908-cef7cc50-97d1-4e0a-9e06-309bd0a49173.png" width="100%"/>
+  <img src="https://user-images.githubusercontent.com/27466624/222385182-1247251c-8fac-4e77-94f5-57580e0ce3bd.png" width="100%"/>
   <div>&nbsp;</div>
   <div align="center">
     <b><font size="5">OpenMMLab 官网</font></b>
@@ -25,6 +25,7 @@
 [![license](https://img.shields.io/github/license/open-mmlab/mmyolo.svg)](https://github.com/open-mmlab/mmyolo/blob/main/LICENSE)
 [![open issues](https://isitmaintained.com/badge/open/open-mmlab/mmyolo.svg)](https://github.com/open-mmlab/mmyolo/issues)
 [![issue resolution](https://isitmaintained.com/badge/resolution/open-mmlab/mmyolo.svg)](https://github.com/open-mmlab/mmyolo/issues)
+[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/app-center/openxlab_demo.svg)](https://openxlab.org.cn/apps?search=mmyolo)
 
 [📘使用文档](https://mmyolo.readthedocs.io/zh_CN/latest/) |
 [🛠️安装教程](https://mmyolo.readthedocs.io/zh_CN/latest/get_started/installation.html) |
@@ -68,6 +69,7 @@
 - [🛠️ 安装](#️%EF%B8%8F-安装-)
 - [👨‍🏫 教程](#-教程-)
 - [📊 基准测试和模型库](#-基准测试和模型库-)
+- [🧰 基于 MMYOLO 开发的项目](#-基于-mmyolo-开发的项目-)
 - [❓ 常见问题](#-常见问题-)
 - [🙌 贡献指南](#-贡献指南-)
 - [🤝 致谢](#🤝-致谢-)
@@ -78,10 +80,13 @@
 
 ## 🥳 🚀 最新进展 [🔝](#-table-of-contents)
 
-💎 **v0.4.0** 版本已经在 2023.1.18 发布：
+💎 **v0.6.0** 版本已经在 2023.8.15 发布：
 
-1. 实现了 [YOLOv8](https://github.com/open-mmlab/mmyolo/blob/dev/configs/yolov8/README.md) 目标检测模型，并通过 [projects/easydeploy](https://github.com/open-mmlab/mmyolo/blob/dev/projects/easydeploy) 支持了模型部署
-2. 新增了中英文版本的 [YOLOv8 原理和实现全解析文档](https://github.com/open-mmlab/mmyolo/blob/dev/docs/zh_cn/algorithm_descriptions/yolov8_description.md)
+- 支持 YOLOv5 实例分割
+- 基于 MMPose 支持 YOLOX-Pose
+- 添加 15 分钟的实例分割教程
+- YOLOv5 支持使用 mask 标注来优化边界框
+- 添加多尺度训练和测试文档
 
 我们提供了实用的**脚本命令速查表**
 
@@ -101,7 +106,7 @@
 | 🌟  | 自定义数据集从标注到部署保姆级教程 | [![Link](https://i2.hdslb.com/bfs/archive/13f566c89a18c9c881713b63ec14da952d4c0b14.jpg@112w_63h_1c.webp)](https://www.bilibili.com/video/BV1RG4y137i5)  [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1RG4y137i5)](https://www.bilibili.com/video/BV1JG4y1d7GC) |                                                 [自定义数据集从标注到部署保姆级教程](https://github.com/open-mmlab/mmyolo/blob/dev/docs/zh_cn/user_guides/custom_dataset.md)                                                  |
 | 🌟  |      顶会第一步 · 模块自定义       | [![Link](http://i2.hdslb.com/bfs/archive/5b23d41ac57466824eaf185ef806ef734414e93b.jpg@112w_63h_1c.webp)](https://www.bilibili.com/video/BV1yd4y1j7VD)  [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1yd4y1j7VD)](https://www.bilibili.com/video/BV1yd4y1j7VD)  |                                    [顶会第一步·模块自定义.ipynb](https://github.com/open-mmlab/OpenMMLabCourse/blob/main/codes/MMYOLO_tutorials/[实用类第四期]顶会第一步·模块自定义.ipynb)                                    |
 
-完整视频列表请参考 [资源汇总页面](https://mmyolo.readthedocs.io/zh_CN/latest/article.html)
+完整视频列表请参考 [中文解读资源汇总 - 视频](https://mmyolo.readthedocs.io/zh_CN/latest/get_started/article.html)
 
 发布历史和更新细节请参考 [更新日志](https://mmyolo.readthedocs.io/zh_CN/latest/notes/changelog.html)
 
@@ -123,7 +128,7 @@
 <img src="https://user-images.githubusercontent.com/12907710/208044554-1e8de6b5-48d8-44e4-a7b5-75076c7ebb71.png"/>
 </div>
 
-MMYOLO 中目前仅仅实现了目标检测算法，但是相比 MMDeteciton 版本有显著训练加速，训练速度相比原先版本提升 2.6 倍。
+MMYOLO 中目前实现了目标检测和旋转框目标检测算法，但是相比 MMDeteciton 版本有显著训练加速，训练速度相比原先版本提升 2.6 倍。
 
 ## 📖 简介 [🔝](#-table-of-contents)
 
@@ -159,12 +164,12 @@ P6 模型图详见 [model_design.md](docs/zh_cn/recommended_topics/model_design.
 MMYOLO 依赖 PyTorch, MMCV, MMEngine 和 MMDetection，以下是安装的简要步骤。 更详细的安装指南请参考[安装文档](docs/zh_cn/get_started/installation.md)。
 
 ```shell
-conda create -n open-mmlab python=3.8 pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -y
-conda activate open-mmlab
+conda create -n mmyolo python=3.8 pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -y
+conda activate mmyolo
 pip install openmim
 mim install "mmengine>=0.6.0"
 mim install "mmcv>=2.0.0rc4,<2.1.0"
-mim install "mmdet>=3.0.0rc6,<3.1.0"
+mim install "mmdet>=3.0.0,<4.0.0"
 git clone https://github.com/open-mmlab/mmyolo.git
 cd mmyolo
 # Install albumentations
@@ -198,14 +203,16 @@ MMYOLO 用法和 MMDetection 几乎一致，所有教程都是通用的，你也
 <summary>推荐专题</summary>
 
 - [如何给 MMYOLO 贡献代码](docs/zh_cn/recommended_topics/contributing.md)
+- [训练和测试技巧](docs/zh_cn/recommended_topics/training_testing_tricks.md)
 - [MMYOLO 模型结构设计](docs/zh_cn/recommended_topics/model_design.md)
 - [原理和实现全解析](docs/zh_cn/recommended_topics/algorithm_descriptions/)
 - [轻松更换主干网络](docs/zh_cn/recommended_topics/replace_backbone.md)
+- [MMYOLO 模型复杂度分析](docs/zh_cn/recommended_topics/complexity_analysis.md)
 - [标注+训练+测试+部署全流程](docs/zh_cn/recommended_topics/labeling_to_deployment_tutorials.md)
 - [关于可视化的一切](docs/zh_cn/recommended_topics/visualization.md)
 - [模型部署流程](docs/zh_cn/recommended_topics/deploy/)
 - [常见错误排查步骤](docs/zh_cn/recommended_topics/troubleshooting_steps.md)
-- [MMYOLO 产业范例介绍](docs/zh_cn/recommended_topics/industry_examples.md)
+- [MMYOLO 应用范例介绍](docs/zh_cn/recommended_topics/application_examples/)
 - [MM 系列 Repo 必备基础](docs/zh_cn/recommended_topics/mm_basics.md)
 - [数据集准备和说明](docs/zh_cn/recommended_topics/dataset_preparation.md)
 
@@ -217,9 +224,10 @@ MMYOLO 用法和 MMDetection 几乎一致，所有教程都是通用的，你也
 - [恢复训练](docs/zh_cn/common_usage/resume_training.md)
 - [开启和关闭 SyncBatchNorm](docs/zh_cn/common_usage/syncbn.md)
 - [开启混合精度训练](docs/zh_cn/common_usage/amp_training.md)
+- [多尺度训练和测试](docs/zh_cn/common_usage/ms_training_testing.md)
 - [测试时增强相关说明](docs/zh_cn/common_usage/tta.md)
 - [给主干网络增加插件](docs/zh_cn/common_usage/plugins.md)
-- [冻结指定网络层权重](docs/zh_cn/common_usage/common_usage/freeze_layers.md)
+- [冻结指定网络层权重](docs/zh_cn/common_usage/freeze_layers.md)
 - [输出模型预测结果](docs/zh_cn/common_usage/output_predictions.md)
 - [设置随机种子](docs/zh_cn/common_usage/set_random_seed.md)
 - [算法组合替换教程](docs/zh_cn/common_usage/module_combination.md)
@@ -253,6 +261,7 @@ MMYOLO 用法和 MMDetection 几乎一致，所有教程都是通用的，你也
 
 - [学习 YOLOv5 配置文件](docs/zh_cn/tutorials/config.md)
 - [数据流](docs/zh_cn/tutorials/data_flow.md)
+- [旋转目标检测](docs/zh_cn/tutorials/rotated_detection.md)
 - [自定义安装](docs/zh_cn/tutorials/custom_installation.md)
 - [常见警告说明](docs/zh_cn/tutorials/warning_notes.md)
 - [常见问题](docs/zh_cn/tutorials/faq.md)
@@ -278,18 +287,42 @@ MMYOLO 用法和 MMDetection 几乎一致，所有教程都是通用的，你也
 
 ## 📊 基准测试和模型库 [🔝](#-table-of-contents)
 
+<div align=center>
+<img src="https://user-images.githubusercontent.com/17425982/222087414-168175cc-dae6-4c5c-a8e3-3109a152dd19.png"/>
+</div>
+
 测试结果和模型可以在 [模型库](docs/zh_cn/model_zoo.md) 中找到。
+
+<details open>
+<summary><b>支持的任务</b></summary>
+
+- [x] 目标检测
+- [x] 旋转框目标检测
+
+</details>
 
 <details open>
 <summary><b>支持的算法</b></summary>
 
 - [x] [YOLOv5](configs/yolov5)
+- [ ] [YOLOv5u](configs/yolov5/yolov5u) (仅推理)
 - [x] [YOLOX](configs/yolox)
 - [x] [RTMDet](configs/rtmdet)
+- [x] [RTMDet-Rotated](configs/rtmdet)
 - [x] [YOLOv6](configs/yolov6)
 - [x] [YOLOv7](configs/yolov7)
 - [x] [PPYOLOE](configs/ppyoloe)
 - [x] [YOLOv8](configs/yolov8)
+
+</details>
+
+<details open>
+<summary><b>支持的数据集</b></summary>
+
+- [x] COCO Dataset
+- [x] VOC Dataset
+- [x] CrowdHuman Dataset
+- [x] DOTA 1.0 Dataset
 
 </details>
 
@@ -357,6 +390,33 @@ MMYOLO 用法和 MMDetection 几乎一致，所有教程都是通用的，你也
 
 </details>
 
+## 🧰 基于 MMYOLO 开发的项目 [🔝](#-table-of-contents)
+
+### 算法
+
+- [YOLO-MS](https://github.com/FishAndWasabi/YOLO-MS)
+  实时物体检测的多尺度表征学习
+
+- [RSPrompter](https://github.com/KyanChen/RSPrompter)
+  基于视觉基础模型的遥感实例分割提示学习
+
+- [EAEFNet](https://github.com/FreeformRobotics/EAEFNet)
+  针对 RGB 热感知任务的显式注意力增强融合
+
+- [CVPRW2023 Track 1: Multi-Camera People Tracking](https://github.com/ipl-uw/AIC23_Track1_UWIPL_ETRI)
+  利用锚点引导聚类和时空一致性 ID 重新分配增强多摄像头人员跟踪能力
+
+### 部署
+
+- [EdgeLab](https://github.com/Seeed-Studio/EdgeLab)
+  Seeed Studio EdgeLab 是一个专注于嵌入式人工智能的开源项目。他们对 OpenMMLab 中的优秀算法进行了优化，使其适用于实际应用场景，并使实现过程更加友好，从而在嵌入式设备上实现更快、更准确的推理。
+
+- [AX-Samples](https://github.com/AXERA-TECH/ax-samples/tree/main/examples/ax620)
+  AX-Samples 由 爱芯元智 主导开发。该项目实现了常见的 深度学习开源算法 在 爱芯元智 的 AI SoC 上的示例代码，其中也包含了 MMYOLO 的相关示例。
+
+- [PPQ ONNX Quantization Model Zoo](https://github.com/openppl-public/ppq/blob/master/ppq/samples/QuantZoo/Readme.md#33-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B)
+  OnnxQuant 是目前最大的模型量化数据集，它包含 ONNX 模型，数据，以及相关的测试脚本。 他们使用 MMYOLO 作为目标检测量化算法的基准测试。
+
 ## ❓ 常见问题 [🔝](#-table-of-contents)
 
 请参考 [FAQ](docs/zh_cn/tutorials/faq.md) 了解其他用户的常见问题。
@@ -394,8 +454,8 @@ MMYOLO 是一款由来自不同高校和企业的研发人员共同参与贡献�
 
 - [MMEngine](https://github.com/open-mmlab/mmengine): OpenMMLab 深度学习模型训练基础库
 - [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab 计算机视觉基础库
-- [MIM](https://github.com/open-mmlab/mim): MIM 是 OpenMMlab 项目、算法、模型的统一入口
-- [MMClassification](https://github.com/open-mmlab/mmclassification): OpenMMLab 图像分类工具箱
+- [MMPreTrain](https://github.com/open-mmlab/mmpretrain): OpenMMLab 深度学习预训练工具箱
+- [MMagic](https://github.com/open-mmlab/mmagic): OpenMMLab 新一代人工智能内容生成（AIGC）工具箱
 - [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab 目标检测工具箱
 - [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab 新一代通用 3D 目标检测平台
 - [MMRotate](https://github.com/open-mmlab/mmrotate): OpenMMLab 旋转框检测工具箱与测试基准
@@ -413,7 +473,9 @@ MMYOLO 是一款由来自不同高校和企业的研发人员共同参与贡献�
 - [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab 图像视频编辑工具箱
 - [MMGeneration](https://github.com/open-mmlab/mmgeneration): OpenMMLab 图片视频生成模型工具箱
 - [MMDeploy](https://github.com/open-mmlab/mmdeploy): OpenMMLab 模型部署框架
+- [MIM](https://github.com/open-mmlab/mim): MIM 是 OpenMMlab 项目、算法、模型的统一入口
 - [MMEval](https://github.com/open-mmlab/mmeval): OpenMMLab 机器学习算法评测库
+- [Playground](https://github.com/open-mmlab/playground): 收集和展示 OpenMMLab 相关的前沿、有趣的社区项目
 
 ## ❤️ 欢迎加入 OpenMMLab 社区 [🔝](#-table-of-contents)
 
